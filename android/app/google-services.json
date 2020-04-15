@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "140686736776",
+    "firebase_url": "https://fundmanager-4725a.firebaseio.com",
+    "project_id": "fundmanager-4725a",
+    "storage_bucket": "fundmanager-4725a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140686736776:android:6aa4ac96db11b9d6e48e3d",
+        "android_client_info": {
+          "package_name": "com.fundmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140686736776-fb6vviu2qbrq2qtls24sl8lbcu1tvkj9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fundmanager",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "140686736776-cl54nhqioi06d4cn2hir1pis53btg4k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCau288kzKcPYNY3-ANbsLR69CHM8YpnrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140686736776-cl54nhqioi06d4cn2hir1pis53btg4k1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "140686736776-rc666jpt2indbre7q73pe2tgc9obhm0u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fundManager"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

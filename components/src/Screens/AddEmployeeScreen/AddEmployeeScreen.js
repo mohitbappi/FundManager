@@ -10,6 +10,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DateTimePicker from '../EditProfileScreen/DateTimePicker';
 import InternetComponent from '../NoConnectionHandle/InternetComponent';
 import NoConnectionHandle from '../NoConnectionHandle/NoConnectionHandle';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 class AddEmployeeScreen extends Component {  
 
@@ -199,14 +200,36 @@ class AddEmployeeScreen extends Component {
     onAddEmployee = () => {
         if(this.props.isActive == 'none' && (this.state.isEmailTrue && this.state.isCodeTrue && this.state.isNameTrue && this.state.isDOBTrue && this.state.isAmountTrue))
         {
-            db.ref('/users/'+this.props.userInfo.user.id+'/employees').push({
-                email: this.props.email,
-                employeeCode: this.props.code,
-                name: this.props.name,
-                dob: this.props.dob,
-                amount: this.props.amount
-            })
-            this.props.navigation.navigate('Employee')
+            let data = this.props.userInfo.user;   
+            let flag = true
+            db.ref('/users/'+data.id+'/employees').on("value" ,query => {                            
+                let response = query.val();                                   
+                response &&
+                Object.entries(response).map(([key, value]) => {           
+                    let email = value.email
+                    let employeeCode = value.employeeCode
+                    console.log("email", email)
+                    if(this.props.email === email || this.props.code === employeeCode)                                 
+                    {
+                        flag = false                        
+                    }
+                })                                  
+            })            
+            if(flag)
+            {
+                db.ref('/users/'+this.props.userInfo.user.id+'/employees').push({
+                    email: this.props.email,
+                    employeeCode: this.props.code,
+                    name: this.props.name,
+                    dob: this.props.dob,
+                    amount: this.props.amount
+                })
+                this.props.navigation.navigate('Employee')
+            }
+            else
+            {
+                this.refs.toast.show("This employee has been added. Please add another employee", DURATION.LENGTH_LONG);
+            }
         }
     }
     
@@ -278,6 +301,7 @@ class AddEmployeeScreen extends Component {
                 <TouchableOpacity style={[styles.submitBtn,{backgroundColor:this.state.backgroundColor}]} disabled = {this.state.disabled} onPress = {this.onAddEmployee}>
                     <Text style={styles.submitBtnText}>Add</Text>
                 </TouchableOpacity>
+                <Toast ref="toast" />
                 <DateTimePickerModal
                     isVisible={this.state.isDatePickerVisible}
                     mode="date"

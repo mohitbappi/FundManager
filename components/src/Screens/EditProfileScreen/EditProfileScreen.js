@@ -142,7 +142,7 @@ class EditProfileScreen extends Component {
                                 editable = {true}
                                 keyboard = 'number-pad'
                                 color = {this.state.colorCode}
-                                error_value ='Enter Valid Employee Code'
+                                error_value ='Enter Valid Employee Code (only numbers)'
                             />
                             <Field 
                                 value = {this.props.userName}                                                                 
